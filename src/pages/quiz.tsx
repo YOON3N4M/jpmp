@@ -1,4 +1,6 @@
-interface Quiz {
+interface QuizType {
+  // 음식 종류
+  foodType: "양식" | "중식" | "한식" | "일식";
   //음식 사진 URL
   foodPicURL: string;
   //식당 이름 기재 해도 되고 안해도 되고
