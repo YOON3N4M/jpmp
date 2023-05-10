@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 interface QuizType {
@@ -35,13 +35,20 @@ const AddContainer = styled.div`
     margin: 0 auto;
     width: 30rem;
     height: 30rem;
-    background-color: gray;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     margin-bottom: 2rem;
+    img {
+      max-width: 30rem;
+      max-height: 30rem;
+      border-radius: 10px;
+    }
+    :hover {
+      background-color: #8080804f;
+    }
   }
   .food-info-input-container {
     display: flex;
@@ -50,7 +57,18 @@ const AddContainer = styled.div`
   textarea {
     margin: 0 auto;
     display: block;
-    width: 50px;
+    width: 50%;
+    margin-bottom: 1rem;
+  }
+  #file-input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 `;
 
@@ -59,6 +77,7 @@ const InfoRow = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   width: 60%;
+
   min-height: 50px;
   // background-color: red;
   align-items: center;
@@ -68,11 +87,21 @@ const InfoRow = styled.div`
   }
 `;
 
+const StyledBtn = styled.button`
+  margin: 0 auto;
+  display: block;
+`;
+
 export default function Add() {
   const [isSet, setIsSet] = useState(false);
   const [menu, setMenu] = useState("");
   const [region, setRegion] = useState("");
-  const [restaurants, setRestaurants] = useState("");
+  const [restaurant, setRestaurant] = useState("");
+  const [price, setPrice] = useState<number>();
+  const [desc, setDesc] = useState("");
+  const [attachment, setAttachment] = useState("");
+
+  const fileInput = useRef();
 
   //음식정보 select,input태그의 onChange 함수들
   function changeMenuType(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -87,49 +116,91 @@ export default function Add() {
   function changeRegion(event: React.ChangeEvent<HTMLInputElement>) {
     setRegion(event.target.value);
   }
-  // 하나의 함수로 모든 input태그를 커버하는 방식
-  function changeMenuInfo(event: React.ChangeEvent<HTMLInputElement>) {
-    if (event.target.name === "menuName") {
-      setMenu(event.target.value);
-    } else if (event.target.name === "region") {
-      setRegion(event.target.value);
+  function changeRestaurant(event: React.ChangeEvent<HTMLInputElement>) {
+    setRestaurant(event.target.value);
+  }
+  function changePrice(event: React.ChangeEvent<HTMLInputElement>) {
+    setPrice(parseInt(event.target.value));
+  }
+  function changeDesc(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setDesc(event.target.value);
+  }
+  //file input (사진)
+  function changePicture(event: React.ChangeEvent<HTMLInputElement>) {
+    let selectedPicture;
+    const reader = new FileReader();
+
+    if (event.target.files !== null) {
+      selectedPicture = event.target.files[0];
+      reader.readAsDataURL(selectedPicture);
+      reader.onloadend = (event: any) => {
+        setAttachment(event.currentTarget.result);
+      };
     }
+  }
+  // 등록(submit)
+  function uploadQuizToDB(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const quizRef = {
+      isSet,
+      menu,
+      region,
+      restaurant,
+      price,
+      desc,
+    };
+    console.log(quizRef);
   }
 
   return (
     <AddContainer>
-      <div className="food-pic-container">
-        <h3>음식 사진을 추가하세요!</h3>
-      </div>
+      <label htmlFor="file-input">
+        <div className="food-pic-container">
+          {attachment ? (
+            <img src={attachment} />
+          ) : (
+            <h3>음식 사진을 추가하세요!</h3>
+          )}
+        </div>
+      </label>
+      <input onChange={changePicture} id="file-input" type="file"></input>
       <div className="food-info-input-container">
-        <InfoRow>
-          <span>단품/세트</span>
-          <select onChange={changeMenuType}>
-            <option>단품</option>
-            <option>세트</option>
-          </select>
-        </InfoRow>
-        <InfoRow>
-          <span>메뉴 이름</span>
-          <input onChange={changeMenuName} value={menu}></input>
-        </InfoRow>
-
-        <InfoRow>
-          <span>지역 *</span>
-          <input onChange={changeRegion} value={region}></input>
-        </InfoRow>
-        <InfoRow>
-          <span>식당 이름</span>
-          <input></input>
-        </InfoRow>
-        <InfoRow>
-          <span>가격 *</span>
-          <input></input>
-        </InfoRow>
-        <InfoRow>
-          <span>기타 설명</span>
-        </InfoRow>
-        <textarea></textarea>
+        <form onSubmit={uploadQuizToDB}>
+          <InfoRow>
+            <span>단품/세트</span>
+            <select onChange={changeMenuType}>
+              <option>단품</option>
+              <option>세트</option>
+            </select>
+          </InfoRow>
+          <InfoRow>
+            <span>메뉴 이름</span>
+            <input onChange={changeMenuName} value={menu} required></input>
+          </InfoRow>
+          <InfoRow>
+            <span>지역 *</span>
+            <input onChange={changeRegion} value={region} required></input>
+          </InfoRow>
+          <InfoRow>
+            <span>식당 이름</span>
+            <input value={restaurant} onChange={changeRestaurant}></input>
+          </InfoRow>
+          <InfoRow>
+            <span>가격</span>
+            <input
+              onChange={changePrice}
+              value={price}
+              placeholder="숫자만 입력해주세요!"
+              type="number"
+              required
+            ></input>
+          </InfoRow>
+          <InfoRow>
+            <span>기타 설명</span>
+          </InfoRow>
+          <textarea onChange={changeDesc} value={desc}></textarea>
+          <StyledBtn type="submit">등록하기</StyledBtn>
+        </form>
       </div>
     </AddContainer>
   );
