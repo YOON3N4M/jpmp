@@ -5,9 +5,24 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "DOSIyagiMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/DOSIyagiMedium.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "양진체";
+  src: url("https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @media (min-width: 375px) {
   :root {
-    font-size: 30%;
+    font-size: 50%;
   }
 }
 @media (min-width: 800px) {
@@ -21,8 +36,24 @@
     font-size: 100%;
   }
 }
+@font-face {
+  font-family: "BRBA_B";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/BRBA_B.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@font-face {
+  font-family: "GimpoTitle00";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/GimpoTitle00.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 html {
   background-color: #ebeef1;
   margin: 0;
-  font-family: "BMJUA";
+  font-family: "GimpoTitle00";
 }

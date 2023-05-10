@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 interface QuizType {
@@ -6,7 +7,7 @@ interface QuizType {
   //음식 사진 URL
   foodPicURL: string;
   //식당 이름 기재 해도 되고 안해도 되고
-  nameOfRestaurants?: string;
+  restaurants?: string;
   // 지역
   region: string;
   // 음식 항목별 가격
@@ -68,6 +69,33 @@ const InfoRow = styled.div`
 `;
 
 export default function Add() {
+  const [isSet, setIsSet] = useState(false);
+  const [menu, setMenu] = useState("");
+  const [region, setRegion] = useState("");
+  const [restaurants, setRestaurants] = useState("");
+
+  //음식정보 select,input태그의 onChange 함수들
+  function changeMenuType(event: React.ChangeEvent<HTMLSelectElement>) {
+    if (event.target.value === "세트") {
+      setIsSet(true);
+    } else setIsSet(false);
+  }
+  // input태그마다 개별적으로 함수를 선언하는 방식
+  function changeMenuName(event: React.ChangeEvent<HTMLInputElement>) {
+    setMenu(event.target.value);
+  }
+  function changeRegion(event: React.ChangeEvent<HTMLInputElement>) {
+    setRegion(event.target.value);
+  }
+  // 하나의 함수로 모든 input태그를 커버하는 방식
+  function changeMenuInfo(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.name === "menuName") {
+      setMenu(event.target.value);
+    } else if (event.target.name === "region") {
+      setRegion(event.target.value);
+    }
+  }
+
   return (
     <AddContainer>
       <div className="food-pic-container">
@@ -76,15 +104,19 @@ export default function Add() {
       <div className="food-info-input-container">
         <InfoRow>
           <span>단품/세트</span>
-          <input></input>
+          <select onChange={changeMenuType}>
+            <option>단품</option>
+            <option>세트</option>
+          </select>
         </InfoRow>
         <InfoRow>
-          <span>메뉴이름 *</span>
-          <input></input>
+          <span>메뉴 이름</span>
+          <input onChange={changeMenuName} value={menu}></input>
         </InfoRow>
+
         <InfoRow>
           <span>지역 *</span>
-          <input></input>
+          <input onChange={changeRegion} value={region}></input>
         </InfoRow>
         <InfoRow>
           <span>식당 이름</span>

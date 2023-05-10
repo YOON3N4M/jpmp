@@ -7,7 +7,7 @@ const AppContainer = styled.div`
     width: 900px;
   }
   margin: 0 auto;
-  min-height: 1000px;
+
   background-color: white;
   border-radius: 1rem;
   padding: 5rem 0px;

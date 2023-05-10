@@ -24,6 +24,6 @@ interface QuizType {
   desc?: string;
 }
 
-export default function Quiz() {
-  return <h1>퀴즈</h1>;
+export default function RandomQuiz() {
+  return <h1>랜덤 퀴즈</h1>;
 }
