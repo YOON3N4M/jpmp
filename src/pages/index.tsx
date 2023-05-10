@@ -19,6 +19,9 @@ const MainHeader = styled.div`
     text-align: center;
     border-radius: 10px;
     margin-bottom: 2rem;
+    p {
+      text-align: left;
+    }
   }
 `;
 
