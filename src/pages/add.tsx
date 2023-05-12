@@ -181,6 +181,7 @@ export default function Add() {
       alert("음식 사진을 1개 선택해주세요!");
     }
     const quizRef = {
+      id: `id${uuid()}`,
       type,
       isSet,
       menu,
@@ -201,7 +202,7 @@ export default function Add() {
     alert("성공적으로 등록되었습니다.");
     router.push("/");
   }
-  console.log(evaluation);
+  console.log(uuid());
   return (
     <AddContainer>
       <label htmlFor="file-input">
