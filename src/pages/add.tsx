@@ -202,7 +202,7 @@ export default function Add() {
     alert("성공적으로 등록되었습니다.");
     router.push("/");
   }
-  console.log(uuid());
+
   return (
     <AddContainer>
       <label htmlFor="file-input">

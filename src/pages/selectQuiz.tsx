@@ -19,19 +19,24 @@ const TypeRow = styled.div`
 
 const FoodImgContainer = styled.div`
   display: flex;
-  padding: 0 2rem;
+  margin: 0 auto;
+  width: 45rem;
+  flex-wrap: wrap;
 `;
 
 const FoodImg = styled.img`
   width: 14rem;
   height: 14rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
   border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
+  margin-bottom: 1rem;
 `;
 
 interface QuizT {
+  id: string;
   attachmentURL: string;
   desc: string;
   evaluation: string;
@@ -45,9 +50,13 @@ interface QuizT {
 
 export default function SelectQuiz() {
   const [quizs, setQuizs] = useState<QuizT[]>([]);
+  // 순서대로 한(kor),중(chn),일(jpn),양(wes),디저트/음료(des),기타
   const [korFood, setKorFood] = useState<QuizT[]>([]);
-
-  let test;
+  const [chnFood, setChnFood] = useState<QuizT[]>([]);
+  const [jpnFood, setJpnFood] = useState<QuizT[]>([]);
+  const [wesFood, setWesFood] = useState<QuizT[]>([]);
+  const [desFood, setDesFood] = useState<QuizT[]>([]);
+  const [etcFood, setEtcFood] = useState<QuizT[]>([]);
 
   //firebase db에서 퀴즈를 불러옴
   async function getQuizFromDB() {
@@ -56,13 +65,19 @@ export default function SelectQuiz() {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => docTemp.push(doc.data()));
     setQuizs(docTemp);
-    test = await quizs.filter((quiz) => quiz.type === "한식");
-    console.log(quizs);
+    setKorFood(docTemp.filter((quiz: QuizT) => quiz.type === "한식"));
+    setChnFood(docTemp.filter((quiz: QuizT) => quiz.type === "중식"));
+    setJpnFood(docTemp.filter((quiz: QuizT) => quiz.type === "일식"));
+    setWesFood(docTemp.filter((quiz: QuizT) => quiz.type === "양식"));
+    setDesFood(docTemp.filter((quiz: QuizT) => quiz.type === "디저트/음료"));
+    setEtcFood(docTemp.filter((quiz: QuizT) => quiz.type === "기타"));
   }
 
   useEffect(() => {
     getQuizFromDB();
   }, []);
+
+  console.log(etcFood);
 
   return (
     <QuizContainer>
@@ -71,26 +86,63 @@ export default function SelectQuiz() {
         <h2>한식</h2>
       </TypeRow>
       <FoodImgContainer>
-        {quizs.length !== 0
-          ? quizs.map((quiz) => <FoodImg src={quiz.attachmentURL} />)
+        {korFood.length !== 0
+          ? korFood.map((quiz) => (
+              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+            ))
           : null}
       </FoodImgContainer>
 
       <TypeRow>
         <h2>양식</h2>
       </TypeRow>
+      <FoodImgContainer>
+        {wesFood.length !== 0
+          ? wesFood.map((quiz) => (
+              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+            ))
+          : null}
+      </FoodImgContainer>
       <TypeRow>
         <h2>일식</h2>
       </TypeRow>
+      <FoodImgContainer>
+        {jpnFood.length !== 0
+          ? jpnFood.map((quiz) => (
+              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+            ))
+          : null}
+      </FoodImgContainer>
       <TypeRow>
         <h2>중식</h2>
       </TypeRow>
+      <FoodImgContainer>
+        {chnFood.length !== 0
+          ? chnFood.map((quiz) => (
+              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+            ))
+          : null}
+      </FoodImgContainer>
       <TypeRow>
         <h2>디저트/음료</h2>
       </TypeRow>
+      <FoodImgContainer>
+        {desFood.length !== 0
+          ? desFood.map((quiz) => (
+              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+            ))
+          : null}
+      </FoodImgContainer>
       <TypeRow>
         <h2>기타</h2>
       </TypeRow>
+      <FoodImgContainer>
+        {etcFood.length !== 0
+          ? etcFood.map((quiz) => (
+              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+            ))
+          : null}
+      </FoodImgContainer>
     </QuizContainer>
   );
 }
