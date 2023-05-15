@@ -35,7 +35,7 @@ const FoodImg = styled.img`
   margin-bottom: 1rem;
 `;
 
-interface QuizT {
+export interface QuizT {
   id: string;
   attachmentURL: string;
   desc: string;

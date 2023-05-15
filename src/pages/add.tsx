@@ -134,7 +134,6 @@ export default function Add() {
         break;
     }
   }
-
   function changeMenu(event: React.ChangeEvent<HTMLInputElement>) {
     setMenu(event.target.value);
   }
