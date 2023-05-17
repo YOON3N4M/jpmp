@@ -1,5 +1,7 @@
 import { dbService } from "@/fBase";
 import { collection, getDocs, query } from "firebase/firestore";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -58,6 +60,8 @@ export default function SelectQuiz() {
   const [desFood, setDesFood] = useState<QuizT[]>([]);
   const [etcFood, setEtcFood] = useState<QuizT[]>([]);
 
+  const router = useRouter();
+
   //firebase db에서 퀴즈를 불러옴
   async function getQuizFromDB() {
     let docTemp: any = [];
@@ -88,7 +92,26 @@ export default function SelectQuiz() {
       <FoodImgContainer>
         {korFood.length !== 0
           ? korFood.map((quiz) => (
-              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              <Link
+                href={{
+                  pathname: `/selectQuiz/${quiz.id}`,
+                  query: {
+                    id: quiz.id,
+                    attachmentURL: quiz.attachmentURL,
+                    desc: quiz.desc,
+                    evaluation: quiz.evaluation,
+                    isSet: quiz.isSet,
+                    menu: quiz.menu,
+                    region: quiz.region,
+                    restaurant: quiz.restaurant,
+                    type: quiz.type,
+                  },
+                }}
+                as={`/selectQuiz/${quiz.id}`}
+                key={quiz.id}
+              >
+                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              </Link>
             ))
           : null}
       </FoodImgContainer>
@@ -99,7 +122,26 @@ export default function SelectQuiz() {
       <FoodImgContainer>
         {wesFood.length !== 0
           ? wesFood.map((quiz) => (
-              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              <Link
+                href={{
+                  pathname: `/selectQuiz/${quiz.id}`,
+                  query: {
+                    id: quiz.id,
+                    attachmentURL: quiz.attachmentURL,
+                    desc: quiz.desc,
+                    evaluation: quiz.evaluation,
+                    isSet: quiz.isSet,
+                    menu: quiz.menu,
+                    region: quiz.region,
+                    restaurant: quiz.restaurant,
+                    type: quiz.type,
+                  },
+                }}
+                as={`/selectQuiz/${quiz.id}`}
+                key={quiz.id}
+              >
+                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              </Link>
             ))
           : null}
       </FoodImgContainer>
@@ -109,7 +151,26 @@ export default function SelectQuiz() {
       <FoodImgContainer>
         {jpnFood.length !== 0
           ? jpnFood.map((quiz) => (
-              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              <Link
+                href={{
+                  pathname: `/selectQuiz/${quiz.id}`,
+                  query: {
+                    id: quiz.id,
+                    attachmentURL: quiz.attachmentURL,
+                    desc: quiz.desc,
+                    evaluation: quiz.evaluation,
+                    isSet: quiz.isSet,
+                    menu: quiz.menu,
+                    region: quiz.region,
+                    restaurant: quiz.restaurant,
+                    type: quiz.type,
+                  },
+                }}
+                as={`/selectQuiz/${quiz.id}`}
+                key={quiz.id}
+              >
+                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              </Link>
             ))
           : null}
       </FoodImgContainer>
@@ -119,7 +180,26 @@ export default function SelectQuiz() {
       <FoodImgContainer>
         {chnFood.length !== 0
           ? chnFood.map((quiz) => (
-              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              <Link
+                href={{
+                  pathname: `/selectQuiz/${quiz.id}`,
+                  query: {
+                    id: quiz.id,
+                    attachmentURL: quiz.attachmentURL,
+                    desc: quiz.desc,
+                    evaluation: quiz.evaluation,
+                    isSet: quiz.isSet,
+                    menu: quiz.menu,
+                    region: quiz.region,
+                    restaurant: quiz.restaurant,
+                    type: quiz.type,
+                  },
+                }}
+                as={`/selectQuiz/${quiz.id}`}
+                key={quiz.id}
+              >
+                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              </Link>
             ))
           : null}
       </FoodImgContainer>
@@ -129,7 +209,26 @@ export default function SelectQuiz() {
       <FoodImgContainer>
         {desFood.length !== 0
           ? desFood.map((quiz) => (
-              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              <Link
+                href={{
+                  pathname: `/selectQuiz/${quiz.id}`,
+                  query: {
+                    id: quiz.id,
+                    attachmentURL: quiz.attachmentURL,
+                    desc: quiz.desc,
+                    evaluation: quiz.evaluation,
+                    isSet: quiz.isSet,
+                    menu: quiz.menu,
+                    region: quiz.region,
+                    restaurant: quiz.restaurant,
+                    type: quiz.type,
+                  },
+                }}
+                as={`/selectQuiz/${quiz.id}`}
+                key={quiz.id}
+              >
+                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              </Link>
             ))
           : null}
       </FoodImgContainer>
@@ -139,7 +238,26 @@ export default function SelectQuiz() {
       <FoodImgContainer>
         {etcFood.length !== 0
           ? etcFood.map((quiz) => (
-              <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              <Link
+                href={{
+                  pathname: `/selectQuiz/${quiz.id}`,
+                  query: {
+                    id: quiz.id,
+                    attachmentURL: quiz.attachmentURL,
+                    desc: quiz.desc,
+                    evaluation: quiz.evaluation,
+                    isSet: quiz.isSet,
+                    menu: quiz.menu,
+                    region: quiz.region,
+                    restaurant: quiz.restaurant,
+                    type: quiz.type,
+                  },
+                }}
+                as={`/selectQuiz/${quiz.id}`}
+                key={quiz.id}
+              >
+                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+              </Link>
             ))
           : null}
       </FoodImgContainer>

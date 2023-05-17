@@ -180,7 +180,7 @@ export default function Add() {
       alert("음식 사진을 1개 선택해주세요!");
     }
     const quizRef = {
-      id: `id${uuid()}`,
+      id: `${uuid()}`,
       type,
       isSet,
       menu,

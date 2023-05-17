@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <>
       <TitleContainer>
-        <h1>🍖진품먹품🍖</h1>
+        <h1>진품먹품</h1>
       </TitleContainer>
       <MainHeader>
         <div>
