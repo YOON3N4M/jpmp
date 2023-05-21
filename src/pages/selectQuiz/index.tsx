@@ -38,16 +38,16 @@ const FoodImg = styled.img`
 `;
 
 export interface QuizT {
-  id: string;
-  attachmentURL: string;
-  desc: string;
-  evaluation: string;
-  isSet: boolean;
-  menu: string;
-  price: number;
-  region: string;
-  restaurant: string;
-  type: string;
+  id: string; //| undefined | string[];
+  attachmentURL: string; //| undefined | string[];
+  desc: string; //| undefined | string[];
+  evaluation: string; //| undefined | string[];
+  isSet: boolean; //| undefined | string[] | string;
+  menu: string; //| undefined | string[];
+  price: number; //| undefined | string[] | string;
+  region: string; //| undefined | string[];
+  restaurant: string; //| undefined | string[];
+  type: string; //| undefined | string[];
 }
 
 export default function SelectQuiz() {
@@ -97,14 +97,6 @@ export default function SelectQuiz() {
                   pathname: `/selectQuiz/${quiz.id}`,
                   query: {
                     id: quiz.id,
-                    attachmentURL: quiz.attachmentURL,
-                    desc: quiz.desc,
-                    evaluation: quiz.evaluation,
-                    isSet: quiz.isSet,
-                    menu: quiz.menu,
-                    region: quiz.region,
-                    restaurant: quiz.restaurant,
-                    type: quiz.type,
                   },
                 }}
                 as={`/selectQuiz/${quiz.id}`}
@@ -127,14 +119,6 @@ export default function SelectQuiz() {
                   pathname: `/selectQuiz/${quiz.id}`,
                   query: {
                     id: quiz.id,
-                    attachmentURL: quiz.attachmentURL,
-                    desc: quiz.desc,
-                    evaluation: quiz.evaluation,
-                    isSet: quiz.isSet,
-                    menu: quiz.menu,
-                    region: quiz.region,
-                    restaurant: quiz.restaurant,
-                    type: quiz.type,
                   },
                 }}
                 as={`/selectQuiz/${quiz.id}`}
@@ -156,14 +140,6 @@ export default function SelectQuiz() {
                   pathname: `/selectQuiz/${quiz.id}`,
                   query: {
                     id: quiz.id,
-                    attachmentURL: quiz.attachmentURL,
-                    desc: quiz.desc,
-                    evaluation: quiz.evaluation,
-                    isSet: quiz.isSet,
-                    menu: quiz.menu,
-                    region: quiz.region,
-                    restaurant: quiz.restaurant,
-                    type: quiz.type,
                   },
                 }}
                 as={`/selectQuiz/${quiz.id}`}
@@ -185,14 +161,6 @@ export default function SelectQuiz() {
                   pathname: `/selectQuiz/${quiz.id}`,
                   query: {
                     id: quiz.id,
-                    attachmentURL: quiz.attachmentURL,
-                    desc: quiz.desc,
-                    evaluation: quiz.evaluation,
-                    isSet: quiz.isSet,
-                    menu: quiz.menu,
-                    region: quiz.region,
-                    restaurant: quiz.restaurant,
-                    type: quiz.type,
                   },
                 }}
                 as={`/selectQuiz/${quiz.id}`}
@@ -214,14 +182,6 @@ export default function SelectQuiz() {
                   pathname: `/selectQuiz/${quiz.id}`,
                   query: {
                     id: quiz.id,
-                    attachmentURL: quiz.attachmentURL,
-                    desc: quiz.desc,
-                    evaluation: quiz.evaluation,
-                    isSet: quiz.isSet,
-                    menu: quiz.menu,
-                    region: quiz.region,
-                    restaurant: quiz.restaurant,
-                    type: quiz.type,
                   },
                 }}
                 as={`/selectQuiz/${quiz.id}`}
@@ -243,14 +203,6 @@ export default function SelectQuiz() {
                   pathname: `/selectQuiz/${quiz.id}`,
                   query: {
                     id: quiz.id,
-                    attachmentURL: quiz.attachmentURL,
-                    desc: quiz.desc,
-                    evaluation: quiz.evaluation,
-                    isSet: quiz.isSet,
-                    menu: quiz.menu,
-                    region: quiz.region,
-                    restaurant: quiz.restaurant,
-                    type: quiz.type,
                   },
                 }}
                 as={`/selectQuiz/${quiz.id}`}
