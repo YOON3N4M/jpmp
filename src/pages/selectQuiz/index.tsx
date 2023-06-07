@@ -83,136 +83,59 @@ export default function SelectQuiz() {
 
   console.log(etcFood);
 
+  function RenderQuiz(quizObj: any) {
+    const { quiz } = quizObj;
+    return (
+      <>
+        <FoodImgContainer>
+          {quiz.length !== 0
+            ? quiz.map((quiz: QuizT) => (
+                <Link
+                  href={{
+                    pathname: `/selectQuiz/${quiz.id}`,
+                    query: {
+                      id: quiz.id,
+                    },
+                  }}
+                  as={`/selectQuiz/${quiz.id}`}
+                  key={quiz.id}
+                >
+                  <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+                </Link>
+              ))
+            : null}
+        </FoodImgContainer>
+      </>
+    );
+  }
+
   return (
     <QuizContainer>
       <h1>선택 퀴즈</h1>
       <TypeRow>
         <h2>한식</h2>
       </TypeRow>
-      <FoodImgContainer>
-        {korFood.length !== 0
-          ? korFood.map((quiz) => (
-              <Link
-                href={{
-                  pathname: `/selectQuiz/${quiz.id}`,
-                  query: {
-                    id: quiz.id,
-                  },
-                }}
-                as={`/selectQuiz/${quiz.id}`}
-                key={quiz.id}
-              >
-                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-              </Link>
-            ))
-          : null}
-      </FoodImgContainer>
-
+      <RenderQuiz quiz={korFood} />
       <TypeRow>
         <h2>양식</h2>
       </TypeRow>
-      <FoodImgContainer>
-        {wesFood.length !== 0
-          ? wesFood.map((quiz) => (
-              <Link
-                href={{
-                  pathname: `/selectQuiz/${quiz.id}`,
-                  query: {
-                    id: quiz.id,
-                  },
-                }}
-                as={`/selectQuiz/${quiz.id}`}
-                key={quiz.id}
-              >
-                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-              </Link>
-            ))
-          : null}
-      </FoodImgContainer>
+      <RenderQuiz quiz={wesFood} />
       <TypeRow>
         <h2>일식</h2>
       </TypeRow>
-      <FoodImgContainer>
-        {jpnFood.length !== 0
-          ? jpnFood.map((quiz) => (
-              <Link
-                href={{
-                  pathname: `/selectQuiz/${quiz.id}`,
-                  query: {
-                    id: quiz.id,
-                  },
-                }}
-                as={`/selectQuiz/${quiz.id}`}
-                key={quiz.id}
-              >
-                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-              </Link>
-            ))
-          : null}
-      </FoodImgContainer>
+      <RenderQuiz quiz={jpnFood} />
       <TypeRow>
         <h2>중식</h2>
       </TypeRow>
-      <FoodImgContainer>
-        {chnFood.length !== 0
-          ? chnFood.map((quiz) => (
-              <Link
-                href={{
-                  pathname: `/selectQuiz/${quiz.id}`,
-                  query: {
-                    id: quiz.id,
-                  },
-                }}
-                as={`/selectQuiz/${quiz.id}`}
-                key={quiz.id}
-              >
-                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-              </Link>
-            ))
-          : null}
-      </FoodImgContainer>
+      <RenderQuiz quiz={chnFood} />
       <TypeRow>
         <h2>디저트/음료</h2>
       </TypeRow>
-      <FoodImgContainer>
-        {desFood.length !== 0
-          ? desFood.map((quiz) => (
-              <Link
-                href={{
-                  pathname: `/selectQuiz/${quiz.id}`,
-                  query: {
-                    id: quiz.id,
-                  },
-                }}
-                as={`/selectQuiz/${quiz.id}`}
-                key={quiz.id}
-              >
-                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-              </Link>
-            ))
-          : null}
-      </FoodImgContainer>
+      <RenderQuiz quiz={desFood} />
       <TypeRow>
         <h2>기타</h2>
       </TypeRow>
-      <FoodImgContainer>
-        {etcFood.length !== 0
-          ? etcFood.map((quiz) => (
-              <Link
-                href={{
-                  pathname: `/selectQuiz/${quiz.id}`,
-                  query: {
-                    id: quiz.id,
-                  },
-                }}
-                as={`/selectQuiz/${quiz.id}`}
-                key={quiz.id}
-              >
-                <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-              </Link>
-            ))
-          : null}
-      </FoodImgContainer>
+      <RenderQuiz quiz={etcFood} />
     </QuizContainer>
   );
 }

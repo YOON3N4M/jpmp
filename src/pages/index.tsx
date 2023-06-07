@@ -46,7 +46,7 @@ const StyledAnchor = styled.a`
   margin-bottom: 1.5rem;
   text-align: center;
   font-size: 2rem;
-  background-color: red;
+  background-color: gray;
   border-radius: 30px;
   line-height: 3rem;
   cursor: pointer;

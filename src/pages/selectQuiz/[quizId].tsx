@@ -3,6 +3,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { QuizT } from ".";
 import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
 import { dbService } from "@/fBase";
+import styled from "styled-components";
+
+const FoodIMG = styled.img`
+  width: 500px;
+`;
 
 export default function QuizPage() {
   const [minPrice, setMinPrice] = useState(0);
@@ -52,6 +57,7 @@ export default function QuizPage() {
       {quiz !== undefined ? (
         <>
           {" "}
+          <FoodIMG src={quiz.attachmentURL} />
           <h1>{quiz.menu}</h1>
           <form onSubmit={submitAnswer}>
             <input type="number" onChange={onChange}></input>
