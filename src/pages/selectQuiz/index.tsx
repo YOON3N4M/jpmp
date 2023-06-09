@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const QuizContainer = styled.div`
+export const QuizContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  h1 {
+  h1,
+  h2 {
     text-align: center;
   }
 `;
@@ -26,7 +27,7 @@ const FoodImgContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const FoodImg = styled.img`
+export const FoodImg = styled.img`
   width: 14rem;
   height: 14rem;
   margin-right: 0.5rem;

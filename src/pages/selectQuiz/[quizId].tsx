@@ -1,12 +1,25 @@
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { QuizT } from ".";
+import { QuizContainer, QuizT } from ".";
 import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
 import { dbService } from "@/fBase";
 import styled from "styled-components";
 
 const FoodIMG = styled.img`
   width: 500px;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+`;
+const Info = styled.span`
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 0.2rem 0.2rem;
+  font-size: 0.8rem;
+  margin-right: 0.3rem;
+`;
+
+const Desc = styled.span`
+  display: block;
 `;
 
 export default function QuizPage() {
@@ -54,18 +67,30 @@ export default function QuizPage() {
 
   return (
     <>
-      {quiz !== undefined ? (
-        <>
-          {" "}
-          <FoodIMG src={quiz.attachmentURL} />
-          <h1>{quiz.menu}</h1>
-          <form onSubmit={submitAnswer}>
-            <input type="number" onChange={onChange}></input>
-          </form>
-        </>
-      ) : (
-        <h1>비정상적인 접근입니다.</h1>
-      )}
+      <QuizContainer>
+        {quiz !== undefined ? (
+          <>
+            {" "}
+            <FoodIMG src={quiz.attachmentURL} />
+            <div>
+              <h2>{quiz.menu}</h2>
+              <Info>{quiz.type}</Info>
+              <Info>{quiz.isSet ? "세트" : "단품"}</Info>
+              <Info>{quiz.region}</Info>
+            </div>
+            <div>
+              <Desc>{quiz.desc}</Desc>
+              <span>등록인의 평가 : {quiz.evaluation}</span>
+            </div>
+            <form onSubmit={submitAnswer}>
+              <input type="number" onChange={onChange}></input>
+              <button type="submit">정답!</button>
+            </form>
+          </>
+        ) : (
+          <h1>비정상적인 접근입니다.</h1>
+        )}
+      </QuizContainer>
     </>
   );
 }

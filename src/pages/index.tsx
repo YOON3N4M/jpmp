@@ -1,16 +1,15 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const TitleContainer = styled.div`
-  h1 {
-    text-align: center;
-
-    font-size: 5rem;
-  }
-`;
-
 const MainHeader = styled.div`
   display: flex;
+  h2 {
+    color: white;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: -3rem;
+  }
   div {
     padding: 1rem 1rem;
     margin: 0 auto;
@@ -27,61 +26,67 @@ const MainHeader = styled.div`
 
 const MainBody = styled.div`
   margin: 0 auto;
+  margin-top: 5rem;
   display: flex;
   width: 80%;
-  border: 1px solid black;
+
   border-radius: 10px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  background-color: #e8ded0e1;
+
   padding: 1rem 1rem;
+  justify-content: space-between;
   h2 {
     text-align: center;
     font-size: 3rem;
+    color: #666666;
   }
-`;
+  .big-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 1rem;
+    width: 45%;
+    height: 20rem;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    border: 0px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    span {
+      color: #666666;
+      font-size: 1rem;
+    }
+  }
 
-const StyledAnchor = styled.a`
-  width: 30%;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-size: 2rem;
-  background-color: gray;
-  border-radius: 30px;
-  line-height: 3rem;
-  cursor: pointer;
+  .horizontal {
+    width: 2px;
+    height: 15rem;
+    background-color: #ffffff5e;
+  }
 `;
 
 export default function Home() {
   return (
     <>
-      <TitleContainer>
-        <h1>진품먹품</h1>
-      </TitleContainer>
       <MainHeader>
-        <div>
-          <span>진품먹품은?</span>
-          <p>
-            제시되는 음식 사진과 메뉴 구성, 퀄리티, 지역, 재료 등의 정보들을
-            참고하여 예상되는 가격을 맞추어보는 간단한 게임 입니다!
-          </p>
-          <p>
-            문제를 풀며 새로운 음식이나 맛집을 발견하고, 문제를 등록하며 먹었던
-            음식들을 공유 해보세요!
-          </p>
-        </div>
+        <h2>이 메뉴 얼마게?! 🧐</h2>
       </MainHeader>
       <MainBody>
-        <h2>문제 풀기</h2>
-        <Link legacyBehavior href="/randomQuiz">
-          <StyledAnchor>랜덤문제</StyledAnchor>
-        </Link>
+        {" "}
         <Link legacyBehavior href="/selectQuiz">
-          <StyledAnchor>선택문제</StyledAnchor>
+          <button className="big-button">
+            <h2>문제 풀기</h2>
+            <span>한식, 양식, 일식, 중식, 디저트와 음료까지 다양한 메뉴!</span>
+          </button>
         </Link>
-        <h2>문제 내기</h2>
+        <div className="horizontal"></div>
         <Link legacyBehavior href="/add">
-          <StyledAnchor>문제 내기</StyledAnchor>
+          <button className="big-button">
+            <h2>문제 내기</h2>
+            <span>먹은 메뉴들을 자랑 해보세요!</span>
+          </button>
         </Link>
       </MainBody>
     </>

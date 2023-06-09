@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 
@@ -8,11 +9,31 @@ const AppContainer = styled.div`
   }
   margin: 0 auto;
 
-  background-color: white;
+  background-color: #0884ba;
   border-radius: 1rem;
-  padding: 5rem 0px;
+  padding: 2rem 0px;
+`;
+
+export const TitleContainer = styled.div`
+  h1 {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 600;
+    color: white;
+  }
+  cursor: pointer;
 `;
 
 export default function Layout({ children }: React.PropsWithChildren) {
-  return <AppContainer>{children}</AppContainer>;
+  return (
+    <AppContainer>
+      {" "}
+      <TitleContainer>
+        <Link legacyBehavior href="/">
+          <h1>진품먹품</h1>
+        </Link>
+      </TitleContainer>
+      {children}
+    </AppContainer>
+  );
 }
