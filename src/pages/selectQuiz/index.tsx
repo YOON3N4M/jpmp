@@ -11,6 +11,7 @@ export const QuizContainer = styled.div`
   flex-direction: column;
   h1,
   h2 {
+    color: #f8f8f8;
     text-align: center;
   }
 `;
@@ -27,15 +28,26 @@ const FoodImgContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const FoodImg = styled.img`
+export const FoodCard = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  background-color: #f8f8f8;
+  border-radius: 8px;
   width: 14rem;
-  height: 14rem;
+  height: 15rem;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+export const FoodImg = styled.img`
+  width: 10rem;
+  height: 10rem;
+  margin: 0 auto;
   border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
-  margin-bottom: 1rem;
 `;
 
 export interface QuizT {
@@ -91,18 +103,20 @@ export default function SelectQuiz() {
         <FoodImgContainer>
           {quiz.length !== 0
             ? quiz.map((quiz: QuizT) => (
-                <Link
-                  href={{
-                    pathname: `/selectQuiz/${quiz.id}`,
-                    query: {
-                      id: quiz.id,
-                    },
-                  }}
-                  as={`/selectQuiz/${quiz.id}`}
-                  key={quiz.id}
-                >
-                  <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-                </Link>
+                <FoodCard key={quiz.id}>
+                  <Link
+                    href={{
+                      pathname: `/selectQuiz/${quiz.id}`,
+                      query: {
+                        id: quiz.id,
+                      },
+                    }}
+                    as={`/selectQuiz/${quiz.id}`}
+                  >
+                    <FoodImg key={quiz.id} src={quiz.attachmentURL} />
+                    <span></span>
+                  </Link>
+                </FoodCard>
               ))
             : null}
         </FoodImgContainer>
