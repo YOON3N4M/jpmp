@@ -57,6 +57,7 @@ const MainBody = styled.div`
     span {
       color: #666666;
       font-size: 1rem;
+      font-weight: 500;
     }
   }
 
@@ -85,7 +86,7 @@ export default function Home() {
         <Link legacyBehavior href="/add">
           <button className="big-button">
             <h2>문제 내기</h2>
-            <span>먹은 메뉴들을 자랑 해보세요!</span>
+            <span>먹었던 메뉴들을 자랑 해보세요!</span>
           </button>
         </Link>
       </MainBody>

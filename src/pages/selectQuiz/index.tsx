@@ -9,29 +9,43 @@ export const QuizContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  h1,
-  h2 {
-    color: #f8f8f8;
-    text-align: center;
+  h1 {
+    text-align: left;
+    font-weight: 900;
   }
 `;
 
-const TypeRow = styled.div`
+const TypeRow = styled.div<{ tooLongText?: boolean }>`
   width: 100%;
   text-align: center;
+  div {
+    width: ${(props) => (props.tooLongText ? "10rem" : "6rem")};
+    height: 3rem;
+    background-color: #ffffff45;
+    border-radius: 1rem;
+    margin-left: 6rem;
+    margin-bottom: 1rem;
+    h2 {
+      line-height: 3rem;
+    }
+  }
 `;
 
 const FoodImgContainer = styled.div`
   display: flex;
   margin: 0 auto;
   width: 45rem;
+  min-height: 15rem;
   flex-wrap: wrap;
 `;
 
 export const FoodCard = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 1.5rem;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: #f8f8f8;
   border-radius: 8px;
   width: 14rem;
@@ -39,6 +53,19 @@ export const FoodCard = styled.div`
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   margin-bottom: 1rem;
+  .menu {
+    margin-top: 1rem;
+    color: #666666;
+  }
+  .restaurant {
+    margin-top: 0.2rem;
+    color: #adadad;
+  }
+  a {
+    width: 10rem;
+    height: 10rem;
+  }
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 `;
 
 export const FoodImg = styled.img`
@@ -103,20 +130,23 @@ export default function SelectQuiz() {
         <FoodImgContainer>
           {quiz.length !== 0
             ? quiz.map((quiz: QuizT) => (
-                <FoodCard key={quiz.id}>
-                  <Link
-                    href={{
-                      pathname: `/selectQuiz/${quiz.id}`,
-                      query: {
-                        id: quiz.id,
-                      },
-                    }}
-                    as={`/selectQuiz/${quiz.id}`}
-                  >
-                    <FoodImg key={quiz.id} src={quiz.attachmentURL} />
-                    <span></span>
-                  </Link>
-                </FoodCard>
+                <Link
+                  href={{
+                    pathname: `/selectQuiz/${quiz.id}`,
+                    query: {
+                      id: quiz.id,
+                    },
+                  }}
+                  as={`/selectQuiz/${quiz.id}`}
+                  key={quiz.id}
+                >
+                  <FoodCard>
+                    <FoodImg src={quiz.attachmentURL} />
+
+                    <span className="menu">{quiz.menu}</span>
+                    <span className="restaurant">{quiz.restaurant}</span>
+                  </FoodCard>{" "}
+                </Link>
               ))
             : null}
         </FoodImgContainer>
@@ -126,29 +156,40 @@ export default function SelectQuiz() {
 
   return (
     <QuizContainer>
-      <h1>선택 퀴즈</h1>
       <TypeRow>
-        <h2>한식</h2>
+        <div>
+          <h2>한식</h2>
+        </div>
       </TypeRow>
       <RenderQuiz quiz={korFood} />
       <TypeRow>
-        <h2>양식</h2>
+        <div>
+          <h2>양식</h2>
+        </div>
       </TypeRow>
       <RenderQuiz quiz={wesFood} />
       <TypeRow>
-        <h2>일식</h2>
+        <div>
+          <h2>일식</h2>
+        </div>
       </TypeRow>
       <RenderQuiz quiz={jpnFood} />
       <TypeRow>
-        <h2>중식</h2>
+        <div>
+          <h2>중식</h2>
+        </div>
       </TypeRow>
       <RenderQuiz quiz={chnFood} />
-      <TypeRow>
-        <h2>디저트/음료</h2>
+      <TypeRow tooLongText={true}>
+        <div>
+          <h2>디저트/음료</h2>
+        </div>
       </TypeRow>
       <RenderQuiz quiz={desFood} />
       <TypeRow>
-        <h2>기타</h2>
+        <div>
+          <h2>기타</h2>
+        </div>
       </TypeRow>
       <RenderQuiz quiz={etcFood} />
     </QuizContainer>

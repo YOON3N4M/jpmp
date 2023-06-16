@@ -79,3 +79,7 @@ html {
   margin: 0;
   font-family: "S-CoreDream-3Light";
 }
+
+* {
+  color: #f8f8f8;
+}
