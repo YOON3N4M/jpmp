@@ -1,3 +1,12 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
+:root{
+    --mainColor: "",
+    --mainShadow: "3px 3px 8px rgba(0, 0, 0, 0.2)",
+
+}
+
 @font-face {
   font-family: "BMJUA";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
@@ -84,3 +93,6 @@ html {
 * {
   color: #f8f8f8;
 }
+
+
+`;

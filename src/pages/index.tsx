@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <>
       <MainHeader>
-        <h2>이 메뉴 얼마게?! 🧐</h2>
+        <h2>이 메뉴 얼마게~?! 🧐</h2>
       </MainHeader>
       <MainBody>
         {" "}
@@ -86,7 +86,7 @@ export default function Home() {
         <Link legacyBehavior href="/add">
           <button className="big-button">
             <h2>문제 내기</h2>
-            <span>먹었던 메뉴들을 자랑 해보세요!</span>
+            <span>메뉴를 등록 해보세요!</span>
           </button>
         </Link>
       </MainBody>

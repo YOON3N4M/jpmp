@@ -4,11 +4,13 @@ import { QuizContainer, QuizT } from ".";
 import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
 import { dbService } from "@/fBase";
 import styled from "styled-components";
+import { StyledBtn, StyledInput } from "../add";
 
 const FoodIMG = styled.img`
   width: 500px;
   margin: 0 auto;
   margin-bottom: 1rem;
+  border-radius: 8px;
 `;
 const Info = styled.span`
   border: 1px solid black;
@@ -16,6 +18,20 @@ const Info = styled.span`
   padding: 0.2rem 0.2rem;
   font-size: 0.8rem;
   margin-right: 0.3rem;
+`;
+
+const QuizDescContainer = styled.div`
+  width: 80%;
+  border-radius: 8px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #cecece94;
+  margin: 0 auto;
+  align-items: center;
+  * {
+    text-align: center;
+  }
 `;
 
 const Desc = styled.span`
@@ -67,11 +83,12 @@ export default function QuizPage() {
 
   return (
     <>
-      <QuizContainer>
-        {quiz !== undefined ? (
-          <>
-            {" "}
+      {quiz !== undefined ? (
+        <>
+          {" "}
+          <QuizDescContainer>
             <FoodIMG src={quiz.attachmentURL} />
+
             <div>
               <h2>{quiz.menu}</h2>
               <Info>{quiz.type}</Info>
@@ -82,15 +99,17 @@ export default function QuizPage() {
               <Desc>{quiz.desc}</Desc>
               <span>등록인의 평가 : {quiz.evaluation}</span>
             </div>
-            <form onSubmit={submitAnswer}>
-              <input type="number" onChange={onChange}></input>
-              <button type="submit">정답!</button>
-            </form>
-          </>
-        ) : (
-          <h1>비정상적인 접근입니다.</h1>
-        )}
-      </QuizContainer>
+            <div>
+              <form onSubmit={submitAnswer}>
+                <StyledInput type="number" onChange={onChange}></StyledInput>
+                <StyledBtn type="submit">정답!</StyledBtn>
+              </form>
+            </div>
+          </QuizDescContainer>
+        </>
+      ) : (
+        <h1>비정상적인 접근입니다.</h1>
+      )}
     </>
   );
 }

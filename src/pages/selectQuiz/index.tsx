@@ -25,6 +25,7 @@ const TypeRow = styled.div<{ tooLongText?: boolean }>`
     border-radius: 1rem;
     margin-left: 6rem;
     margin-bottom: 1rem;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     h2 {
       line-height: 3rem;
     }
@@ -37,6 +38,9 @@ const FoodImgContainer = styled.div`
   width: 45rem;
   min-height: 15rem;
   flex-wrap: wrap;
+  background-color: #cecece94;
+  padding: 2rem 1rem;
+  border-radius: 8px;
 `;
 
 export const FoodCard = styled.div`
@@ -53,6 +57,7 @@ export const FoodCard = styled.div`
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   margin-bottom: 1rem;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   .menu {
     margin-top: 1rem;
     color: #666666;
@@ -65,7 +70,6 @@ export const FoodCard = styled.div`
     width: 10rem;
     height: 10rem;
   }
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 `;
 
 export const FoodImg = styled.img`

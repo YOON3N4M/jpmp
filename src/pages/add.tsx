@@ -9,6 +9,10 @@ const AddContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background-color: #cecece94;
+  width: 80%;
+  padding: 3rem 0;
+  border-radius: 8px;
   .food-pic-container {
     margin: 0 auto;
     width: 30rem;
@@ -19,13 +23,12 @@ const AddContainer = styled.div`
     justify-content: center;
     cursor: pointer;
     margin-bottom: 2rem;
+    background-color: #bebebeb1;
     img {
       max-width: 30rem;
       max-height: 30rem;
       border-radius: 10px;
     }
-
-    background-color: #8080801c;
   }
   .food-info-input-container {
     display: flex;
@@ -34,7 +37,7 @@ const AddContainer = styled.div`
       display: block;
       margin: 0 auto;
       text-align: center;
-      opacity: 30%;
+      opacity: 50%;
     }
   }
   textarea {
@@ -42,6 +45,7 @@ const AddContainer = styled.div`
     display: block;
     width: 50%;
     margin-bottom: 1rem;
+    border-radius: 8px;
   }
   #file-input {
     position: absolute;
@@ -68,11 +72,40 @@ const InfoRow = styled.div`
   }
   .right {
   }
+
+  input,
+  select {
+    padding: 0.5rem 0;
+    border-radius: 8px;
+    border: 0px;
+    text-align: center;
+  }
+
+  input,
+  select,
+  option,
+  button {
+    color: black;
+  }
 `;
 
-const StyledBtn = styled.button`
+export const StyledInput = styled.input`
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  border: 0px;
+  text-align: center;
+  color: black;
+`;
+
+export const StyledBtn = styled.button`
   margin: 0 auto;
   display: block;
+  color: black;
+  background-color: #ffffff93;
+  border: 0;
+  border-radius: 8px;
+  padding: 1rem 1rem;
+  cursor: pointer;
 `;
 
 export default function Add() {

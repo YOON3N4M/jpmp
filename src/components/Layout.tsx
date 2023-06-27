@@ -21,6 +21,10 @@ export const TitleContainer = styled.div`
     font-weight: 600;
     color: white;
   }
+  margin: 0 auto;
+  width: 60%;
+  //background-color: #cececea7;
+  border-radius: 8px;
   cursor: pointer;
 `;
 
