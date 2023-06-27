@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { foodType } from "../add";
 
 export const QuizContainer = styled.div`
   margin: 0 auto;
@@ -113,12 +114,12 @@ export default function SelectQuiz() {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => docTemp.push(doc.data()));
     setQuizs(docTemp);
-    setKorFood(docTemp.filter((quiz: QuizT) => quiz.type === "한식"));
-    setChnFood(docTemp.filter((quiz: QuizT) => quiz.type === "중식"));
-    setJpnFood(docTemp.filter((quiz: QuizT) => quiz.type === "일식"));
-    setWesFood(docTemp.filter((quiz: QuizT) => quiz.type === "양식"));
-    setDesFood(docTemp.filter((quiz: QuizT) => quiz.type === "디저트/음료"));
-    setEtcFood(docTemp.filter((quiz: QuizT) => quiz.type === "기타"));
+    setKorFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.korFood));
+    setChnFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.chnFood));
+    setJpnFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.jpnFood));
+    setWesFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.wesFood));
+    setDesFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.desFood));
+    setEtcFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.etcFood));
   }
 
   useEffect(() => {

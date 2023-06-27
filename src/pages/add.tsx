@@ -23,7 +23,7 @@ const AddContainer = styled.div`
     justify-content: center;
     cursor: pointer;
     margin-bottom: 2rem;
-    background-color: #bebebeb1;
+    background-color: #e9e9e9b0;
     img {
       max-width: 30rem;
       max-height: 30rem;
@@ -108,45 +108,65 @@ export const StyledBtn = styled.button`
   cursor: pointer;
 `;
 
+export const foodType = {
+  korFood: "한식",
+  wesFood: "양식",
+  chnFood: "중식",
+  jpnFood: "일식",
+  desFood: "디저트/음료",
+  etcFood: "기타",
+};
+
+export const evaluationType = {
+  cheap: "생각보다 저렴했어요!",
+  average: "적당했어요!",
+  expensive: "생각보다 비쌌어요!",
+};
+
+export const isSetType = {
+  set: "세트",
+  single: "단품",
+};
+
 export default function Add() {
   const fileInput = useRef();
   const router = useRouter();
 
   const [attachment, setAttachment] = useState("");
   const [isSet, setIsSet] = useState(false);
-  const [type, setType] = useState("한식");
+  const [type, setType] = useState(foodType.korFood);
   const [menu, setMenu] = useState("");
   const [region, setRegion] = useState("");
   const [restaurant, setRestaurant] = useState("");
   const [price, setPrice] = useState<number>();
   const [desc, setDesc] = useState("");
-  const [evaluation, setEvaluation] = useState("적당했어요!");
+  const [evaluation, setEvaluation] = useState(evaluationType.average);
 
   //음식정보 select,input태그의 onChange 함수들
   function changeSet(event: React.ChangeEvent<HTMLSelectElement>) {
-    if (event.target.value === "세트") {
+    if (event.target.value === isSetType.set) {
       setIsSet(true);
     } else setIsSet(false);
   }
   function changeType(event: React.ChangeEvent<HTMLSelectElement>) {
     switch (event.target.value) {
-      case "한식":
-        setType("한식");
+      case foodType.korFood:
+        setType(foodType.korFood);
         break;
-      case "양식":
-        setType("양식");
+      case foodType.wesFood:
+        setType(foodType.wesFood);
         break;
-      case "일식":
-        setType("일식");
+      case foodType.jpnFood:
+        setType(foodType.jpnFood);
         break;
-      case "중식":
-        setType("중식");
+      case foodType.chnFood:
+        setType(foodType.chnFood);
         break;
-      case "디저트/음료":
-        setType("디저트/음료");
+      case foodType.desFood:
+        setType(foodType.desFood);
         break;
-      case "기타":
-        setType("기타");
+      case foodType.etcFood:
+        setType(foodType.etcFood);
         break;
       default:
         break;
@@ -154,14 +174,14 @@ export default function Add() {
   }
   function changeEvaluation(event: React.ChangeEvent<HTMLSelectElement>) {
     switch (event.target.value) {
-      case "적당했어요!":
-        setEvaluation("적당했어요!");
+      case evaluationType.average:
+        setEvaluation(evaluationType.average);
         break;
-      case "생각보다 비쌌어요!":
-        setEvaluation("생각보다 비쌌어요!");
+      case evaluationType.expensive:
+        setEvaluation(evaluationType.expensive);
         break;
-      case "생각보다 저렴했어요!":
-        setEvaluation("생각보다 저렴했어요!");
+      case evaluationType.cheap:
+        setEvaluation(evaluationType.cheap);
         break;
       default:
         break;
@@ -257,19 +277,19 @@ export default function Add() {
           <InfoRow>
             <span>단품/세트</span>
             <select onChange={changeSet}>
-              <option>단품</option>
-              <option>세트</option>
+              <option>{isSetType.single}</option>
+              <option>{isSetType.set}</option>
             </select>
           </InfoRow>
           <InfoRow>
             <span>분류</span>
             <select onChange={changeType}>
-              <option>한식</option>
-              <option>양식</option>
-              <option>일식</option>
-              <option>중식</option>
-              <option>디저트/음료</option>
-              <option>기타</option>
+              <option>{foodType.korFood}</option>
+              <option>{foodType.wesFood}</option>
+              <option>{foodType.jpnFood}</option>
+              <option>{foodType.chnFood}</option>
+              <option>{foodType.desFood}</option>
+              <option>{foodType.etcFood}</option>
             </select>
           </InfoRow>
           <InfoRow>
@@ -298,9 +318,9 @@ export default function Add() {
           <InfoRow>
             <span>이정도 가격이면...</span>
             <select onChange={changeEvaluation}>
-              <option>적당했어요!</option>
-              <option>생각보다 비쌌어요!</option>
-              <option>생각보다 저렴했어요!</option>
+              <option>{evaluationType.average}</option>
+              <option>{evaluationType.expensive}</option>
+              <option>{evaluationType.cheap}</option>
             </select>
           </InfoRow>
           <InfoRow>
