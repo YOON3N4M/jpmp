@@ -22,11 +22,12 @@ const TypeRow = styled.div<{ tooLongText?: boolean }>`
   div {
     width: ${(props) => (props.tooLongText ? "10rem" : "6rem")};
     height: 3rem;
-    background-color: #ffffff45;
-    border-radius: 1rem;
+    //background-color: #ffffff45;
+    border-bottom: 1px solid #ffffff99;
     margin-left: 6rem;
     margin-bottom: 1rem;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+
     h2 {
       line-height: 3rem;
     }

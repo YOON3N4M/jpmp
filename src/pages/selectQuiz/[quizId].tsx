@@ -47,12 +47,15 @@ const QuizDescContainer = styled.div`
     margin-bottom: 1rem;
   }
   .evaluation-box {
+    border-top: 1px solid white;
+    padding-top: 2rem;
+    min-width: 80%;
     span {
       display: block;
     }
     .evaluation {
       color: #ffc04a;
-      margin-top: 3rem;
+      margin-top: 2rem;
       margin-bottom: 1rem;
     }
   }
@@ -140,16 +143,16 @@ export default function QuizPage() {
             </div>
             <div className="evaluation-box">
               <span>{quiz.desc}</span>
-              <span className="evaluation">{quiz.evaluation}</span>
+              <span className="evaluation">Hint: {quiz.evaluation}</span>
             </div>
             <div>
               <form onSubmit={submitAnswer}>
                 <StyledInput
                   type="number"
                   onChange={onChange}
-                  placeholder="예상 가격은~?!"
+                  placeholder="예상 가격은"
                 ></StyledInput>
-                <StyledBtn type="submit">정답!</StyledBtn>
+                <StyledBtn type="submit">정답 입력</StyledBtn>
               </form>
             </div>
           </QuizDescContainer>

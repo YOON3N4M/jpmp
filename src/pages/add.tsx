@@ -102,12 +102,13 @@ export const StyledInput = styled.input`
 export const StyledBtn = styled.button`
   margin: 0 auto;
   display: block;
-  color: black;
-  background-color: #ffffff93;
+  color: white;
+  background-color: #ffffff1f;
   border: 0;
   border-radius: 8px;
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  border: 1px #ffffff57 solid;
 `;
 
 export const foodType = {
