@@ -37,9 +37,9 @@ const FoodImgContainer = styled.div`
   display: flex;
   margin: 0 auto;
   width: 45rem;
-  min-height: 15rem;
+  //min-height: 15rem;
   flex-wrap: wrap;
-  background-color: #cecece94;
+  // background-color: #cecece94;
   padding: 2rem 1rem;
   border-radius: 8px;
 `;

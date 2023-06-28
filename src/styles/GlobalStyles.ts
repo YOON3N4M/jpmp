@@ -84,7 +84,7 @@ export const GlobalStyles = createGlobalStyle`
   font-style: normal;
 }
 html {
-  background-color: #ebeef1;
+  background-color: #000000;
   margin: 0;
   font-family: "S-CoreDream-3Light";
   padding-top: 4rem;

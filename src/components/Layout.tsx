@@ -9,7 +9,7 @@ const AppContainer = styled.div`
   }
   margin: 0 auto;
 
-  background-color: #0884ba;
+  //background-color: #0884ba;
   border-radius: 1rem;
   padding: 2rem 0px;
 `;

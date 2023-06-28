@@ -9,7 +9,7 @@ const AddContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: #cecece94;
+  //background-color: #cecece94;
   width: 80%;
   padding: 3rem 0;
   border-radius: 8px;
@@ -46,6 +46,7 @@ const AddContainer = styled.div`
     width: 50%;
     margin-bottom: 1rem;
     border-radius: 8px;
+    color: black;
   }
   #file-input {
     position: absolute;
@@ -187,6 +188,7 @@ export default function Add() {
         break;
     }
   }
+
   function changeMenu(event: React.ChangeEvent<HTMLInputElement>) {
     setMenu(event.target.value);
   }
@@ -202,6 +204,7 @@ export default function Add() {
   function changeDesc(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setDesc(event.target.value);
   }
+
   //file input (사진)
   function changePicture(event: React.ChangeEvent<HTMLInputElement>) {
     let selectedPicture;
