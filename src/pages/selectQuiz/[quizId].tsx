@@ -18,6 +18,7 @@ const Info = styled.span`
   padding: 0.2rem 0.2rem;
   font-size: 0.8rem;
   margin-right: 0.3rem;
+  background-color: #ffffff37;
 `;
 
 const QuizDescContainer = styled.div`
@@ -26,27 +27,46 @@ const QuizDescContainer = styled.div`
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #cecece94;
+  //background-color: #cecece94;
   margin: 0 auto;
   align-items: center;
   * {
     text-align: center;
   }
-`;
-
-const Desc = styled.span`
-  display: block;
+  .main-info {
+    h2 {
+      display: inline;
+      margin-right: 1rem;
+    }
+    span {
+      color: #ffffffa7;
+    }
+  }
+  .sub-info {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .evaluation-box {
+    span {
+      display: block;
+    }
+    .evaluation {
+      color: #ffc04a;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 export default function QuizPage() {
+  const router = useRouter();
+  const { quizId } = router.query;
+
   const [minPrice, setMinPrice] = useState(0);
   const [price, setPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [answer, setAnswer] = useState(0);
   const [quiz, setQuiz] = useState<QuizT>();
-
-  const router = useRouter();
-  const { quizId } = router.query;
 
   async function getQuizFromDB() {
     let docTemp: any = [];
@@ -69,11 +89,31 @@ export default function QuizPage() {
   function submitAnswer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (answer === price) {
-      console.log("정확한 정답");
+      if (window.confirm("정답 입니다! 문제 목록으로 돌아갑니다.")) {
+        router.push("/selectQuiz");
+      }
     } else if (answer >= minPrice && answer <= maxPrice) {
-      console.log("범위 정답");
+      if (
+        window.confirm(
+          "오차범위 10% 정답 입니다! 정확한 가격을 확인 하시겠습니다? (취소시 곧 바로 문제 목록으로 돌아갑니다.)"
+        )
+      ) {
+        alert(`정답은 ${quiz?.price} 원 입니다. 문제 목록으로 돌아갑니다.`);
+        router.push("/selectQuiz");
+      } else {
+        router.push("/selectQuiz");
+      }
     } else {
-      console.log("틀렸습니다.");
+      if (
+        window.confirm(
+          "오답입니다! 정확한 가격을 확인 하시겠습니다? (취소시 곧 바로 문제 목록으로 돌아갑니다.)"
+        )
+      ) {
+        alert(`정답은 ${quiz?.price} 원 입니다. 문제 목록으로 돌아갑니다.`);
+        router.push("/selectQuiz");
+      } else {
+        router.push("/selectQuiz");
+      }
     }
   }
 
@@ -89,19 +129,26 @@ export default function QuizPage() {
           <QuizDescContainer>
             <FoodIMG src={quiz.attachmentURL} />
 
-            <div>
+            <div className="main-info">
               <h2>{quiz.menu}</h2>
-              <Info>{quiz.type}</Info>
-              <Info>{quiz.isSet ? "세트" : "단품"}</Info>
-              <Info>{quiz.region}</Info>
+              <span>{quiz.restaurant}</span>
             </div>
-            <div>
-              <Desc>{quiz.desc}</Desc>
-              <span>등록인의 평가 : {quiz.evaluation}</span>
+            <div className="sub-info">
+              <Info>#{quiz.type}</Info>
+              <Info>#{quiz.isSet ? "세트" : "단품"}</Info>
+              <Info>#{quiz.region}</Info>
+            </div>
+            <div className="evaluation-box">
+              <span>{quiz.desc}</span>
+              <span className="evaluation">{quiz.evaluation}</span>
             </div>
             <div>
               <form onSubmit={submitAnswer}>
-                <StyledInput type="number" onChange={onChange}></StyledInput>
+                <StyledInput
+                  type="number"
+                  onChange={onChange}
+                  placeholder="예상 가격은~?!"
+                ></StyledInput>
                 <StyledBtn type="submit">정답!</StyledBtn>
               </form>
             </div>

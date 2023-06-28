@@ -87,7 +87,7 @@ html {
   background-color: #000000;
   margin: 0;
   font-family: "S-CoreDream-3Light";
-  padding-top: 4rem;
+  padding-top: 3rem;
 }
 
 * {

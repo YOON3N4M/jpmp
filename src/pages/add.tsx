@@ -37,7 +37,7 @@ const AddContainer = styled.div`
       display: block;
       margin: 0 auto;
       text-align: center;
-      opacity: 50%;
+      opacity: 70%;
     }
   }
   textarea {
@@ -96,6 +96,7 @@ export const StyledInput = styled.input`
   border: 0px;
   text-align: center;
   color: black;
+  margin-bottom: 1rem;
 `;
 
 export const StyledBtn = styled.button`
