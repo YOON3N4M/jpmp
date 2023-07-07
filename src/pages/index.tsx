@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import styled from "styled-components";
 
-const MainHeader = styled.div`
+const MainHeader = styled(motion.div)`
   display: flex;
   h2 {
     color: white;
@@ -42,23 +43,6 @@ const MainBody = styled.div`
     color: #666666;
   }
   .big-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 1rem;
-    width: 45%;
-    height: 20rem;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    border: 0px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    span {
-      color: #666666;
-      font-size: 1rem;
-      font-weight: 500;
-    }
   }
 
   .horizontal {
@@ -68,26 +52,59 @@ const MainBody = styled.div`
   }
 `;
 
+const BigBtn = styled(motion.button)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 1rem;
+  width: 45%;
+  height: 20rem;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  border: 0px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+
+  cursor: pointer;
+  span {
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+`;
+
 export default function Home() {
   return (
     <>
-      <MainHeader>
+      <MainHeader
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.3 }}
+      >
         <h2>이 메뉴 얼마게~?! 🧐</h2>
       </MainHeader>
       <MainBody>
         {" "}
         <Link legacyBehavior href="/selectQuiz">
-          <button className="big-button">
+          <BigBtn
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             <h2>문제 풀기</h2>
             <span>한식, 양식, 일식, 중식, 디저트와 음료까지 다양한 메뉴!</span>
-          </button>
+          </BigBtn>
         </Link>
         <div className="horizontal"></div>
         <Link legacyBehavior href="/add">
-          <button className="big-button">
+          <BigBtn
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             <h2>문제 내기</h2>
             <span>메뉴를 등록 해보세요!</span>
-          </button>
+          </BigBtn>
         </Link>
       </MainBody>
     </>
