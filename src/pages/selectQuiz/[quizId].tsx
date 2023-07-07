@@ -237,9 +237,7 @@ export default function QuizPage() {
                   아직 문제를 푼 사람이 없습니다!
                 </span>
               ) : (
-                <span className="correct-ratio">
-                  {isUp ? "dd" : "ddd"}정답률: {correctRatio}%
-                </span>
+                <span className="correct-ratio">정답률: {correctRatio}%</span>
               )}
             </div>
             <div>
