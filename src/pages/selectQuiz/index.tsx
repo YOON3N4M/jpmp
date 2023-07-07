@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { foodType } from "../add";
+import { motion } from "framer-motion";
 
 export const QuizContainer = styled.div`
   margin: 0 auto;
@@ -43,9 +44,10 @@ const FoodImgContainer = styled.div`
   // background-color: #cecece94;
   padding: 2rem 1rem;
   border-radius: 8px;
+  transition: height 5s ease;
 `;
 
-export const FoodCard = styled.div`
+export const FoodCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,6 +96,9 @@ export interface QuizT {
   region: string; //| undefined | string[];
   restaurant: string; //| undefined | string[];
   type: string; //| undefined | string[];
+  try?: number;
+  correct?: number;
+  inCorrect?: number;
 }
 
 export default function SelectQuiz() {
@@ -146,7 +151,7 @@ export default function SelectQuiz() {
                   as={`/selectQuiz/${quiz.id}`}
                   key={quiz.id}
                 >
-                  <FoodCard>
+                  <FoodCard initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <FoodImg src={quiz.attachmentURL} />
 
                     <span className="menu">{quiz.menu}</span>

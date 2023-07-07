@@ -248,6 +248,9 @@ export default function Add() {
       evaluation,
       desc,
       attachmentURL,
+      try: 0,
+      correct: 0,
+      incorrect: 0,
     };
     try {
       const docRef = await dbAddDoc(dbCollection(dbService, "quiz"), quizRef);
