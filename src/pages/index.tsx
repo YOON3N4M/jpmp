@@ -64,6 +64,15 @@ const BigBtn = styled(motion.button)`
   border-radius: 8px;
   border: 0px;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.5s;
+
+  :hover {
+    background-color: RGB(5, 132, 187);
+    h2,
+    span {
+      color: #f8f8f8;
+    }
+  }
 
   cursor: pointer;
   span {
@@ -71,14 +80,18 @@ const BigBtn = styled(motion.button)`
     font-size: 1rem;
     font-weight: 500;
   }
+  span,
+  h2 {
+    transition: color 0.4s;
+  }
 `;
 
 export default function Home() {
   return (
     <>
       <MainHeader
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.3 }}
       >
         <h2>이 메뉴 얼마게~?! 🧐</h2>
@@ -87,8 +100,8 @@ export default function Home() {
         {" "}
         <Link legacyBehavior href="/selectQuiz">
           <BigBtn
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <h2>문제 풀기</h2>
@@ -98,8 +111,8 @@ export default function Home() {
         <div className="horizontal"></div>
         <Link legacyBehavior href="/add">
           <BigBtn
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <h2>문제 내기</h2>

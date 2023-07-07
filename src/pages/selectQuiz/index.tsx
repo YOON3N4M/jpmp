@@ -151,7 +151,13 @@ export default function SelectQuiz() {
                   as={`/selectQuiz/${quiz.id}`}
                   key={quiz.id}
                 >
-                  <FoodCard initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  <FoodCard
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    onHoverStart={(e) => {}}
+                    onHoverEnd={(e) => {}}
+                  >
                     <FoodImg src={quiz.attachmentURL} />
                     <span className="menu">{quiz.menu}</span>
                     <span className="restaurant">{quiz.restaurant}</span>

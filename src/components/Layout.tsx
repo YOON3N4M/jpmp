@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
@@ -14,7 +15,7 @@ const AppContainer = styled.div`
   padding: 2rem 0px;
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled(motion.div)`
   h1 {
     text-align: center;
     font-size: 5rem;
@@ -32,7 +33,11 @@ export default function Layout({ children }: React.PropsWithChildren) {
   return (
     <AppContainer>
       {" "}
-      <TitleContainer>
+      <TitleContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <Link legacyBehavior href="/">
           <h1>진품먹품</h1>
         </Link>

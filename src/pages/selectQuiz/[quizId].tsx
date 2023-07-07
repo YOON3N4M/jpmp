@@ -88,9 +88,6 @@ export default function QuizPage() {
   const [tryCount, setTryCount] = useState(0);
   const [isUp, setIsUp] = useState<boolean | undefined>();
 
-  const IS_UP = "업!";
-  const IS_DOWN = "다운!";
-
   async function getQuizFromDB() {
     let docTemp: any = [];
     let docIdTemp: any = [];
@@ -123,6 +120,9 @@ export default function QuizPage() {
       setIsUp(true);
     }
   }
+  useEffect(() => {
+    checkUpDown();
+  }, [answer]);
 
   async function submitAnswer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -207,10 +207,6 @@ export default function QuizPage() {
   useEffect(() => {
     aboutCorrectRatio();
   }, [quiz]);
-
-  useEffect(() => {
-    checkUpDown();
-  }, [answer]);
 
   return (
     <>
