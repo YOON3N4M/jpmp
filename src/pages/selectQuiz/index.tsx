@@ -153,7 +153,6 @@ export default function SelectQuiz() {
                 >
                   <FoodCard initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <FoodImg src={quiz.attachmentURL} />
-
                     <span className="menu">{quiz.menu}</span>
                     <span className="restaurant">{quiz.restaurant}</span>
                   </FoodCard>{" "}

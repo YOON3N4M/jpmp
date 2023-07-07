@@ -85,6 +85,11 @@ export default function QuizPage() {
   const [answer, setAnswer] = useState(0);
   const [correctRatio, setCorrectRatio] = useState<number>();
   const [docId, setDocId] = useState<any>();
+  const [tryCount, setTryCount] = useState(0);
+  const [isUp, setIsUp] = useState<boolean | undefined>();
+
+  const IS_UP = "업!";
+  const IS_DOWN = "다운!";
 
   async function getQuizFromDB() {
     let docTemp: any = [];
@@ -108,21 +113,33 @@ export default function QuizPage() {
 
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     setAnswer(Number(event.target.value));
+    checkUpDown();
+  }
+
+  function checkUpDown() {
+    if (answer > price) {
+      setIsUp(false);
+    } else if (answer < price) {
+      setIsUp(true);
+    }
   }
 
   async function submitAnswer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const docRef = doc(dbService, "quiz", docId);
-    await updateDoc(docRef, { try: increment(1) });
     if (answer === price) {
       //정답 +1
       await updateDoc(docRef, { correct: increment(1) });
       if (window.confirm("정답 입니다! 문제 목록으로 돌아갑니다.")) {
+        await updateDoc(docRef, { try: increment(1) });
         router.push("/selectQuiz");
       }
     } else if (answer >= minPrice && answer <= maxPrice) {
       //정답 +1
+      await updateDoc(docRef, { try: increment(1) });
       await updateDoc(docRef, { correct: increment(1) });
+
       if (
         window.confirm(
           "오차범위 10% 정답 입니다! 정확한 가격을 확인 하시겠어요? (취소시 곧 바로 문제 목록으로 돌아갑니다.)"
@@ -134,18 +151,34 @@ export default function QuizPage() {
         router.push("/selectQuiz");
       }
     } else {
+      console.log("마지막단");
       //오답 +1
-      await updateDoc(docRef, { inCorrect: increment(1) });
+      if (tryCount === 0) {
+        alert(`입력한 금액보다 ${isUp ? `업!` : `다운!`}`);
+      }
+      if (tryCount === 1) {
+        await updateDoc(docRef, { try: increment(1) });
+        await updateDoc(docRef, { inCorrect: increment(1) });
+        alert(
+          `땡!! 정답은 ${quiz?.price} 원 입니다. 문제 목록으로 돌아갑니다.`
+        );
+        router.push("/selectQuiz");
+      }
+      setTryCount(1);
+      /* 
       if (
+        isLastChance === true &&
         window.confirm(
           "오답입니다! 정확한 가격을 확인 하시겠어요? (취소시 곧 바로 문제 목록으로 돌아갑니다.)"
         )
       ) {
+        await updateDoc(docRef, { inCorrect: increment(1) });
         alert(`정답은 ${quiz?.price} 원 입니다. 문제 목록으로 돌아갑니다.`);
         router.push("/selectQuiz");
-      } else {
+      } else if(isLastChance ){
         router.push("/selectQuiz");
       }
+      */
     }
   }
 
