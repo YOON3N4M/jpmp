@@ -17,10 +17,14 @@ const AppContainer = styled.div`
 
 export const TitleContainer = styled(motion.div)`
   h1 {
+    transition: color 0.5s ease;
     text-align: center;
     font-size: 5rem;
     font-weight: 600;
     color: white;
+    :hover {
+      color: RGB(5, 132, 187);
+    }
   }
   margin: 0 auto;
   width: 60%;
