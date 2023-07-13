@@ -30,13 +30,12 @@ const MainBody = styled.div`
   margin-top: 5rem;
   display: flex;
   width: 80%;
-
   border-radius: 10px;
   flex-direction: row;
   align-items: center;
-
   padding: 1rem 1rem;
   justify-content: space-between;
+  margin-bottom: 3rem;
   h2 {
     text-align: center;
     font-size: 3rem;
@@ -86,6 +85,32 @@ const BigBtn = styled(motion.button)`
   }
 `;
 
+const MainFooter = styled(motion.div)`
+  margin: 0 auto;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.5s;
+  cursor: pointer;
+  :hover {
+    background-color: #da4c1f;
+    span {
+      color: white;
+    }
+  }
+  span {
+    color: #666666;
+    font-weight: 500;
+    transition: color 0.5s;
+  }
+`;
+
 export default function Home() {
   return (
     <>
@@ -120,6 +145,13 @@ export default function Home() {
           </BigBtn>
         </Link>
       </MainBody>
+      <MainFooter
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
+        <span>의견 보내기</span>
+      </MainFooter>
     </>
   );
 }
