@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { foodType } from "../add";
 import { motion } from "framer-motion";
 
-export const QuizContainer = styled.div`
+export const QuizContainer = styled(motion.div)`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -101,38 +101,20 @@ export interface QuizT {
   inCorrect?: number;
 }
 
-export default function SelectQuiz() {
+export default function SelectQuiz({
+  korFood,
+  chnFood,
+  jpnFood,
+  wesFood,
+  desFood,
+  etcFood,
+}: any) {
   const [quizs, setQuizs] = useState<QuizT[]>([]);
   // 순서대로 한(kor),중(chn),일(jpn),양(wes),디저트/음료(des),기타
-  const [korFood, setKorFood] = useState<QuizT[]>([]);
-  const [chnFood, setChnFood] = useState<QuizT[]>([]);
-  const [jpnFood, setJpnFood] = useState<QuizT[]>([]);
-  const [wesFood, setWesFood] = useState<QuizT[]>([]);
-  const [desFood, setDesFood] = useState<QuizT[]>([]);
-  const [etcFood, setEtcFood] = useState<QuizT[]>([]);
 
   const router = useRouter();
 
   //firebase db에서 퀴즈를 불러옴
-  async function getQuizFromDB() {
-    let docTemp: any = [];
-    const q = query(collection(dbService, "quiz"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => docTemp.push(doc.data()));
-    setQuizs(docTemp);
-    setKorFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.korFood));
-    setChnFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.chnFood));
-    setJpnFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.jpnFood));
-    setWesFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.wesFood));
-    setDesFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.desFood));
-    setEtcFood(docTemp.filter((quiz: QuizT) => quiz.type === foodType.etcFood));
-  }
-
-  useEffect(() => {
-    getQuizFromDB();
-  }, []);
-
-  console.log(etcFood);
 
   function RenderQuiz(quizObj: any) {
     const { quiz } = quizObj;
@@ -152,8 +134,6 @@ export default function SelectQuiz() {
                   key={quiz.id}
                 >
                   <FoodCard
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
                     whileHover={{ scale: 1.1 }}
                     onHoverStart={(e) => {}}
                     onHoverEnd={(e) => {}}
@@ -171,7 +151,7 @@ export default function SelectQuiz() {
   }
 
   return (
-    <QuizContainer>
+    <QuizContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <TypeRow>
         <div>
           <h2>한식</h2>
@@ -210,4 +190,32 @@ export default function SelectQuiz() {
       <RenderQuiz quiz={etcFood} />
     </QuizContainer>
   );
+}
+
+export async function getServerSideProps() {
+  let quizFromDB: any = [];
+  const q = query(collection(dbService, "quiz"));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => quizFromDB.push(doc.data()));
+
+  const korFood = quizFromDB.filter(
+    (quiz: QuizT) => quiz.type === foodType.korFood
+  );
+  const chnFood = quizFromDB.filter(
+    (quiz: QuizT) => quiz.type === foodType.chnFood
+  );
+  const jpnFood = quizFromDB.filter(
+    (quiz: QuizT) => quiz.type === foodType.jpnFood
+  );
+  const wesFood = quizFromDB.filter(
+    (quiz: QuizT) => quiz.type === foodType.wesFood
+  );
+  const desFood = quizFromDB.filter(
+    (quiz: QuizT) => quiz.type === foodType.desFood
+  );
+  const etcFood = quizFromDB.filter(
+    (quiz: QuizT) => quiz.type === foodType.etcFood
+  );
+
+  return { props: { korFood, chnFood, jpnFood, wesFood, desFood, etcFood } };
 }
